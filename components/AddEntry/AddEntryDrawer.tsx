@@ -11,6 +11,11 @@ export default (props) => {
   const onClose = () => {
     setVisible(false);
   };
+  const onAdd = ({ company_name, role, applied_on, stage }) => {
+    console.log("Adding values");
+    //Make HTTP req, show message, close model, show values
+    onClose();
+  };
   return (
     <>
       <Button type="primary" onClick={showDrawer} style={{ margin: "0 auto" }}>
@@ -24,7 +29,7 @@ export default (props) => {
         visible={visible}
         width={700}
       >
-        <AddEntry onAdd={onClose} />
+        <AddEntry onAdd={onAdd} onCancel={onClose} />
       </Drawer>
     </>
   );

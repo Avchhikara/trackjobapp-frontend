@@ -17,7 +17,7 @@ export const AutoCompleteInput = (props) => {
     <>
       <AutoComplete
         value={value}
-        options={options}
+        options={[]}
         style={{ width: 200 }}
         onSelect={onSelect}
         onSearch={onSearch}
