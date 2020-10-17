@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, Button, Card, Input, Select, DatePicker } from "antd";
+import { Form, Button, Card, Input, Select, DatePicker, message } from "antd";
 
 export class AddEntry extends React.Component {
   constructor(props: any) {
@@ -14,12 +14,29 @@ export class AddEntry extends React.Component {
   }
 
   onAddEntry = () => {
-    this.props.onAdd(...this.state);
+    if(this.state.company_name && this.state.role && this.state.applied_on){
+      this.props.onAdd(this.state);
+      this.resetForm();
+      message.success("Entry has been created!");
+    }
+    else{
+      message.warn("Please fill all the values in the form");
+    }
   };
 
   onCancelEntry = () => {
+    this.resetForm();
     this.props.onCancel();
   };
+
+  resetForm = () => {
+    this.setState({
+      company_name: "",
+      role: "",
+      applied_on: "",
+      stage: "applied"
+    })
+  }
 
   render() {
     // const [form] = Form.useForm();
@@ -30,21 +47,28 @@ export class AddEntry extends React.Component {
     const buttonLayout = {
       wrapperCol: { span: 14, offset: 4 },
     };
+
+    const {company_name, role, applied_on, stage} = this.state;
+
     return (
       <Card>
         <Form {...formLayout}>
           <Form.Item label="Company Name">
             <Input
+              required={true}
               onChange={(e) => {
                 this.setState({ company_name: e.target.value });
               }}
+              value={company_name}
             />
           </Form.Item>
           <Form.Item label="Role">
             <Input
+              required={true}
               onChange={(e) => {
                 this.setState({ role: e.target.value });
               }}
+              value={role}
             />
           </Form.Item>
           <Form.Item label="Date Applied">
@@ -67,6 +91,7 @@ export class AddEntry extends React.Component {
                   stage: val,
                 }));
               }}
+              value={stage}
             >
               <Option value="applied">Applied</Option>
               <Option value="interview">Interview</Option>

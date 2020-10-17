@@ -1,9 +1,9 @@
-import AddEntry from "./../components/AddEntry";
+import Home from './../components/Home';
 
 function HomePage() {
   return (
     <>
-      <AddEntry />
+      <Home />
     </>
   );
 }

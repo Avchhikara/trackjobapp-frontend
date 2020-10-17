@@ -1,14 +1,14 @@
 import * as React from "react";
-import { Button, DatePicker, version } from "antd";
+import { Table } from "antd";
+
+import { columns } from './../../utils/constants';
 
 export const TableView = (props) => {
+  
   return (
-    <div className="App">
-      <h1>antd version: {version}</h1>
-      <DatePicker />
-      <Button type="primary" style={{ marginLeft: 8 }}>
-        Primary Button
-      </Button>
-    </div>
+    <Table columns={columns} dataSource={props.data.map((obj, index) => ({
+      ...obj,
+      key: index + 1
+    }))} />
   );
 };
