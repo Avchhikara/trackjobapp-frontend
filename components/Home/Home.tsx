@@ -5,9 +5,17 @@ import { Layout, Row, Col } from 'antd';
 import AddEntryDrawer from './../AddEntry';
 import TableView from './../TableView';
 
-import { ENTRIES_URL } from './../../utils/urls';
+import * as urls from './../../utils/urls';
 
-export class Home extends React.Component {
+interface IState {
+    data: Array<any>
+}
+
+interface IProps {
+
+}
+
+export class Home extends React.Component<IProps, IState> {
     constructor(props){
         super(props);
         this.state = {
@@ -17,12 +25,11 @@ export class Home extends React.Component {
 
     async componentDidMount(){
         // Make a fetch request here
-        const res = await fetch(ENTRIES_URL);
+        const res = await fetch(urls.ENTRIES_URL);
         const entries = await res.json();
         this.setState((prev) => ({
             ...prev,
             data: [
-                ...prev.data,
                 ...entries.map(obj => ({
                     ...obj,
                     role: obj.name

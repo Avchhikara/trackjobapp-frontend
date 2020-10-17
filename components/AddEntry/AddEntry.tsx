@@ -2,7 +2,19 @@ import React from "react";
 
 import { Form, Button, Card, Input, Select, DatePicker, message } from "antd";
 
-export class AddEntry extends React.Component {
+interface IProps {
+  onAdd: Function,
+  onCancel: Function
+}
+
+interface IState {
+  company_name: string,
+  role: string,
+  applied_on: string,
+  stage: string,
+}
+
+export class AddEntry extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {

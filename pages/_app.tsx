@@ -2,8 +2,8 @@ import * as React from "react";
 import App from "next/app";
 import Header from "./../components/Header";
 
-import "./../styles/antd.less";
-import "./../styles/style.scss";
+import 'antd/dist/antd.css'
+import "./../styles/style.css";
 
 class MyApp extends App {
   render() {

@@ -1,3 +1,7 @@
+.logo {
+  color: white;
+}
+
 .application-head {
   display: flex;
   justify-content: space-between;
