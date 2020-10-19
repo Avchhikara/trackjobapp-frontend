@@ -1,21 +1,21 @@
 import React from 'react';
 
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
-import AddEntryDrawer from './../AddEntry';
-import TableView from './../TableView';
+import AddEntryDrawer from '../AddEntry';
+import TableView from '../TableView';
 
-import * as urls from './../../utils/urls';
+import * as urls from '../../utils/urls';
 
 interface IState {
-    data: Array<any>
+    data: Array<any>,
 }
 
 interface IProps {
 
 }
 
-export class Home extends React.Component<IProps, IState> {
+export class Dashboard extends React.Component<IProps, IState> {
     constructor(props){
         super(props);
         this.state = {
@@ -25,12 +25,18 @@ export class Home extends React.Component<IProps, IState> {
 
     async componentDidMount(){
         // Make a fetch request here
-        const res = await fetch(urls.ENTRIES_URL);
+        const res = await fetch(urls.ENTRIES_URL, {
+            method: "POST"
+        });
+        if(res.status !== 200){
+            
+        }
         const entries = await res.json();
+        console.log(entries, res.status);
         this.setState((prev) => ({
             ...prev,
             data: [
-                ...entries.map(obj => ({
+                ...entries.data.map(obj => ({
                     ...obj,
                     role: obj.name
                 }))
@@ -54,7 +60,6 @@ export class Home extends React.Component<IProps, IState> {
     }
 
     render(){
-        const { Header, Content, Footer } = Layout;
 
         return (
             <Row justify="center">

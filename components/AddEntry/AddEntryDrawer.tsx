@@ -14,7 +14,6 @@ export default (props) => {
     setVisible(false);
   };
   const onAdd = ({ company_name, role, applied_on, stage }) => {
-    console.log("Adding values", company_name, role, applied_on, stage);
     props.addData(company_name, role, applied_on, stage);
     //Make HTTP req, show message, close model, show values
     fetch(CREATE_ENTRY_URL, {

@@ -1,9 +1,7 @@
-import Home from './../components/Home';
-
 function HomePage() {
   return (
     <>
-      <Home />
+      <h1>Cool homepage is comming soon!</h1>
     </>
   );
 }
