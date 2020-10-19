@@ -12,7 +12,7 @@ function Dashboard() {
 
 Dashboard.getInitialProps = async ctx => {
   const cookies = getCookies(ctx.req.headers.cookie);
-  if(!cookies.token){
+  if(!("token" in cookies)){
     ctx.res.writeHead(302, { Location: "/login" }).end();
 
   }
