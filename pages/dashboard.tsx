@@ -10,15 +10,15 @@ function Dashboard() {
   );
 }
 
-Dashboard.getInitialProps = async ctx => {
-  const cookies = getCookies(ctx.req.headers.cookie);
-  if(!("token" in cookies)){
-    ctx.res.writeHead(302, { Location: "/login" }).end();
+// Dashboard.getInitialProps = async ctx => {
+//   const cookies = getCookies(ctx.req.headers.cookie);
+//   if(!("token" in cookies)){
+//     ctx.res.writeHead(302, { Location: "/login" }).end();
 
-  }
-  return {
-    props: {}, // will be passed to the page component as props
-  }
-}
+//   }
+//   return {
+//     props: {}, // will be passed to the page component as props
+//   }
+// }
 
 export default Dashboard;

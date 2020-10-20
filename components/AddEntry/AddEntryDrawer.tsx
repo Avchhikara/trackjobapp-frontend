@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Drawer, Button } from "antd";
 
+import Cookies from 'js-cookie';
+
 import { AddEntry } from "./AddEntry";
 
 import { CREATE_ENTRY_URL } from './../../utils/urls';
@@ -14,15 +16,17 @@ export default (props) => {
     setVisible(false);
   };
   const onAdd = ({ company_name, role, applied_on, stage }) => {
+    // Add data in table directly
     props.addData(company_name, role, applied_on, stage);
     //Make HTTP req, show message, close model, show values
     fetch(CREATE_ENTRY_URL, {
       method: "POST",
       body: JSON.stringify({
         company_name, 
-        name: role,
+        role,
         applied_on,
-        stage
+        stage,
+        token: Cookies.get("token")
       }),
       headers: {
         "Content-type": "application/json"

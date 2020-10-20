@@ -1,7 +1,9 @@
+import Login from './../components/Login';
+
 function LoginPage(props){
     return (
         <>
-            <h1>Login page</h1>
+            <Login />
         </>
     )
 }
